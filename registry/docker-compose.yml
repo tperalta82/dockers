@@ -1,0 +1,22 @@
+registry:
+  restart: always
+  image: registry:2
+  ports:
+    - 5000:5000
+  expose:
+    - 5000
+  environment:
+    SEARCH_BACKEND: sqlalchemy
+  volumes:
+    - /opt/docker:/var/lib/registry
+
+registryui:
+  restart: always
+  image: hyper/docker-registry-web
+  ports:
+    - 8080:8080
+  links:
+    - registry
+  environment:
+    REGISTRY_HOST: registry
+    REGISTRY_PORT: 5000
