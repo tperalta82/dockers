@@ -5,6 +5,8 @@ MAINTAINER Tiago Peralta "tperalta82@gmail.com"
 ENV NGINX_VERSION 1.11.3-2-pagespeed~jessie
 
 RUN apt-key adv --keyserver keys.gnupg.net --recv 39100E53 \
+	&& apt-get update \
+	&& apt-get install -y apt-transport-https \
 	&& echo "deb https://s3-eu-west-1.amazonaws.com/jessie-aspt-repo stable main" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y \
